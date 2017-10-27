@@ -11,6 +11,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
+    private val SoundObject = SoundRecorderProcessor()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -20,10 +22,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         // Example of a call to a native method
         //sample_text.text = stringFromJNI()
+
     }
 
     override fun onClick(v: View?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        if(v?.id == mainButton.id)
+        {
+            if(SoundObject.getState())
+            {
+                SoundObject.start()
+            }
+            else
+                SoundObject.stop()
+        }
     }
 
     /**
