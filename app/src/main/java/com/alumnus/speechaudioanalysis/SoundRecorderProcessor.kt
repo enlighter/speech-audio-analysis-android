@@ -32,7 +32,7 @@ class SoundRecorderProcessor {
         return this.recorder == null
     }
 
-    fun getMaxAmplitude() : double {
+    fun getMaxAmplitude() : Int {
         return recorder?.maxAmplitude ?: 0
     }
 }
