@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         if(v?.id == mainButton.id)
         {
-            if(SoundObject.getState())
+            if(!SoundObject.isRecording())
             {
                 SoundObject.start()
             }

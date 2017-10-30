@@ -12,6 +12,7 @@ class SoundRecorderProcessor {
     val audioSampleRate: Int
     private var recorder : AudioRecord? = null
     private var bufferSize:Int
+    private var isRecording: Boolean
 
     init {
         audioSampleRate = 44100 //44.1kHz
@@ -22,19 +23,22 @@ class SoundRecorderProcessor {
         recorder = AudioRecord(MediaRecorder.AudioSource.MIC,
                 audioSampleRate, AudioFormat.CHANNEL_IN_DEFAULT,
                 AudioFormat.ENCODING_PCM_16BIT, bufferSize)
+        isRecording = false
     }
 
     fun start() {
         recorder?.startRecording()
+        isRecording = true
     }
 
     fun stop() {
         recorder?.stop()
+        isRecording = false
     }
 
-    fun getState() : Boolean {
+    fun isRecording() : Boolean {
         //if state is true then recorder is free, false means busy
-        return this.recorder == null
+        return this.isRecording
     }
 
     fun getMaxAmplitude() : Int {
