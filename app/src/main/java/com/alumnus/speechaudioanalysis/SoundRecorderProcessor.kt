@@ -4,27 +4,32 @@ package com.alumnus.speechaudioanalysis
  * Created by sushovan on 27/10/17.
  */
 
+import android.media.AudioRecord
 import android.media.MediaRecorder
+import android.media.AudioFormat
 
 class SoundRecorderProcessor {
-    private var recorder : MediaRecorder? = null
+    val audioSampleRate: Int
+    private var recorder : AudioRecord? = null
+    private var bufferSize:Int
+
+    init {
+        audioSampleRate = 44100 //44.1kHz
+        bufferSize = AudioRecord.getMinBufferSize(audioSampleRate,
+                AudioFormat.CHANNEL_IN_DEFAULT,AudioFormat.ENCODING_PCM_16BIT)
+        //making the buffer bigger....
+        bufferSize = bufferSize*4;
+        recorder = AudioRecord(MediaRecorder.AudioSource.MIC,
+                audioSampleRate, AudioFormat.CHANNEL_IN_DEFAULT,
+                AudioFormat.ENCODING_PCM_16BIT, bufferSize)
+    }
 
     fun start() {
-        if(recorder == null) {
-            recorder = MediaRecorder()
-            recorder?.setAudioSource(MediaRecorder.AudioSource.MIC)
-            recorder?.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS)
-            recorder?.setAudioEncoder(MediaRecorder.AudioEncoder.AAC_ELD)
-            recorder?.setOutputFile("/dev/null")
-            recorder?.prepare()
-            recorder?.start()
-        }
+        recorder?.startRecording()
     }
 
     fun stop() {
         recorder?.stop()
-        recorder?.release()
-        recorder = null
     }
 
     fun getState() : Boolean {
@@ -33,6 +38,6 @@ class SoundRecorderProcessor {
     }
 
     fun getMaxAmplitude() : Int {
-        return recorder?.maxAmplitude ?: 0
+        return 0
     }
 }
