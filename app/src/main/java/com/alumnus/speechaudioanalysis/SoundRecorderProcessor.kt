@@ -7,6 +7,9 @@ package com.alumnus.speechaudioanalysis
 import android.media.AudioRecord
 import android.media.MediaRecorder
 import android.media.AudioFormat
+import android.media.audiofx.NoiseSuppressor
+import android.media.audiofx.AcousticEchoCanceler
+import android.media.audiofx.AutomaticGainControl
 
 class SoundRecorderProcessor {
     val audioSampleRate: Int
@@ -18,17 +21,31 @@ class SoundRecorderProcessor {
         audioSampleRate = 44100 //44.1kHz
         bufferSize = AudioRecord.getMinBufferSize(audioSampleRate,
                 AudioFormat.CHANNEL_IN_DEFAULT,AudioFormat.ENCODING_PCM_16BIT)
-        //making the buffer bigger....
-        bufferSize = bufferSize*4;
-        recorder = AudioRecord(MediaRecorder.AudioSource.MIC,
-                audioSampleRate, AudioFormat.CHANNEL_IN_DEFAULT,
+        //making the buffer bigger.... [*4] will record 4 seconds of data
+        //bufferSize = bufferSize*4;
+        recorder = AudioRecord(MediaRecorder.AudioSource.VOICE_RECOGNITION,
+                audioSampleRate, AudioFormat.CHANNEL_IN_MONO, //mono buffer can be processed linearly,
+                //safer option
                 AudioFormat.ENCODING_PCM_16BIT, bufferSize)
         isRecording = false
     }
 
     fun start() {
-        recorder?.startRecording()
-        isRecording = true
+        try {
+            recorder?.startRecording()
+            isRecording = true
+        }catch (e: Exception)
+        {
+            //TODO: log this!
+        }
+
+        if(recorder !=  null) {
+            //explicitly state that the below parameters are safe to be not null using !!
+            NoiseSuppressor.create(recorder?.getAudioSessionId()!!)
+            AcousticEchoCanceler.create(recorder?.getAudioSessionId()!!)
+            AutomaticGainControl.create(recorder?.getAudioSessionId()!!)
+        }
+
     }
 
     fun stop() {
@@ -37,11 +54,40 @@ class SoundRecorderProcessor {
     }
 
     fun isRecording() : Boolean {
-        //if state is true then recorder is free, false means busy
         return this.isRecording
     }
 
-    fun getMaxAmplitude() : Int {
-        return 0
+    fun getAmplitude() : ShortArray {
+        /**
+         * This function assumes you have started recording,
+         * doesn't start recording by itself
+         */
+
+        if(!isRecording)
+            return shortArrayOf(0,0)
+
+        //shorten the buffer read size for faster sample collection
+        var data =  ShortArray(this.bufferSize, {i->0})
+        var average: Double = 0.0
+        recorder?.read(data, 0, this.bufferSize)
+        //stop()
+        var amplitudeRMS = calculateRMS(data)
+
+        var amplitudeDB : Short = 0
+
+        return shortArrayOf(amplitudeRMS, amplitudeDB)
+
+    }
+
+    private fun calculateRMS(data: ShortArray) : Short
+    {
+        var sumOfSquares: Double = 0.0
+        for(num in data)
+        {
+            sumOfSquares+= num*num
+        }
+        val meanSquare: Double = sumOfSquares/data.size
+
+        return (Math.sqrt(meanSquare)).toShort()
     }
 }
