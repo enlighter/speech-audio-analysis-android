@@ -35,6 +35,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             {
                 SoundObject.start()
                 mainButton.text = getText(R.string.buttonON)
+
+                while(SoundObject.isRecording())
+                {
+                    var currentAmplitude = SoundObject.getAmplitude()
+                    pitchText.text = currentAmplitude[0].toString()
+                }
             }
             else {
                 SoundObject.stop()

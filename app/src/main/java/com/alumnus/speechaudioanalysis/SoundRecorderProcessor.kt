@@ -4,12 +4,18 @@ package com.alumnus.speechaudioanalysis
  * Created by sushovan on 27/10/17.
  */
 
+import android.app.PendingIntent.getActivity
+import android.content.Context
 import android.media.AudioRecord
 import android.media.MediaRecorder
 import android.media.AudioFormat
 import android.media.audiofx.NoiseSuppressor
 import android.media.audiofx.AcousticEchoCanceler
 import android.media.audiofx.AutomaticGainControl
+import android.widget.Button
+import com.alumnus.speechaudioanalysis.R.id.mainButton
+
+import kotlinx.android.synthetic.main.activity_main.*
 
 class SoundRecorderProcessor {
     val audioSampleRate: Int
@@ -90,4 +96,22 @@ class SoundRecorderProcessor {
 
         return (Math.sqrt(meanSquare)).toShort()
     }
+
+//    private fun displayAmplitude()
+//    {
+//        while(this.isRecording)
+//        {
+//            var currentAmplitude = getAmplitude()
+//
+//            //this@SoundRecorderProcessor
+//
+//            findViewById<>(R.id.main_button)
+//
+//            getActivity().getViewById(R.id.mainButton).setText()
+//
+//            activity.
+//            ((Button)MainButton).setText();
+//
+//        }
+//    }
 }
