@@ -2,4 +2,5 @@
     <string name="app_name">SpeechAudioAnalysis</string>
     <string name="buttonOFF">Start Listening</string>
     <string name="buttonON">Stop Listening</string>
+    <string name="initValue">0.00</string>
 </resources>
