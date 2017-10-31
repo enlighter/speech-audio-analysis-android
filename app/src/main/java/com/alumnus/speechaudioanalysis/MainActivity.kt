@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         //@JvmField val mainButton = findViewById<>(R.id.main_button)
         mainButton.setOnClickListener(this)
-        mainButton.setText(getText(R.string.buttonOFF))
+        mainButton.text = getText(R.string.buttonOFF)
 
         // Example of a call to a native method
         //sample_text.text = stringFromJNI()
@@ -34,11 +34,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             if(!SoundObject.isRecording())
             {
                 SoundObject.start()
-                mainButton.setText(getText(R.string.buttonON))
+                mainButton.text = getText(R.string.buttonON)
             }
             else {
                 SoundObject.stop()
-                mainButton.setText(getText(R.string.buttonOFF))
+                mainButton.text = getText(R.string.buttonOFF)
             }
         }
     }
