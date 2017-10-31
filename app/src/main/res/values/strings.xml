@@ -3,4 +3,7 @@
     <string name="buttonOFF">Start Listening</string>
     <string name="buttonON">Stop Listening</string>
     <string name="initValue">0.00</string>
+    <string name="pitchLabel">Pitch</string>
+    <string name="amplitudeLabel">Amplitude</string>
+    <string name="silenceLabel">Silence</string>
 </resources>

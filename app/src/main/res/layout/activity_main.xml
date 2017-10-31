@@ -7,6 +7,18 @@
     tools:context="com.alumnus.speechaudioanalysis.MainActivity">
 
     <TextView
+        android:id="@+id/pitchText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/initValue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.694"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.126" />
+
+    <TextView
         android:id="@+id/amplitudeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,16 +43,40 @@
         app:layout_constraintVertical_bias="0.378" />
 
     <TextView
-        android:id="@+id/pitchText"
+        android:id="@+id/pitchLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/initValue"
+        android:text="@string/pitchLabel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.694"
+        app:layout_constraintHorizontal_bias="0.347"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.126" />
+
+    <TextView
+        android:id="@+id/amplitudeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/amplitudeLabel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.252" />
+
+    <TextView
+        android:id="@+id/silenceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/silenceLabel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.378" />
 
     <Button
         android:id="@+id/mainButton"
@@ -48,7 +84,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/buttonOFF"
-        app:layout_constraintTop_toBottomOf="@+id/amplitudeText"
+        app:layout_constraintTop_toBottomOf="@+id/silenceText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
