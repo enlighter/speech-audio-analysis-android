@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SpeechAudioAnalysis</string>
+    <string name="buttonOFF">Start Listening</string>
+    <string name="buttonON">Stop Listening</string>
 </resources>

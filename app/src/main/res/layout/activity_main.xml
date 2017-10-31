@@ -21,7 +21,7 @@
         style="@style/Widget.AppCompat.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Start Speaking"
+        android:text="@string/buttonOFF"
         app:layout_constraintTop_toBottomOf="@+id/displayText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
