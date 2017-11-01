@@ -35,7 +35,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         {
             if(SoundObject != null) {
                 if (!SoundObject!!.isRecording()) {
-                    SoundObject!!.start()
+                    if(!SoundObject!!.start())
+                        Toast.makeText(this, "Couldn't acquire record stream!",
+                                Toast.LENGTH_LONG).show()
                     mainButton.text = getText(R.string.buttonON)
 
                     while (SoundObject!!.isRecording()) {
