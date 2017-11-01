@@ -12,28 +12,34 @@ import android.media.AudioFormat
 import android.media.audiofx.NoiseSuppressor
 import android.media.audiofx.AcousticEchoCanceler
 import android.media.audiofx.AutomaticGainControl
+import android.util.Log
 import android.widget.Button
 import com.alumnus.speechaudioanalysis.R.id.mainButton
 
 import kotlinx.android.synthetic.main.activity_main.*
 
 class SoundRecorderProcessor {
-    val audioSampleRate: Int
+    val audioSampleRate: Int = 44100 //44.1kHz
     private var recorder : AudioRecord? = null
-    private var bufferSize:Int
-    private var isRecording: Boolean
+    private var bufferSize:Int = 0
+    private var isRecording: Boolean = false
+    private val TAG = "SoundRecorderProcessor"
 
     init {
-        audioSampleRate = 44100 //44.1kHz
-        bufferSize = AudioRecord.getMinBufferSize(audioSampleRate,
-                AudioFormat.CHANNEL_IN_DEFAULT,AudioFormat.ENCODING_PCM_16BIT)
-        //making the buffer bigger.... [*4] will record 4 seconds of data
-        //bufferSize = bufferSize*4;
-        recorder = AudioRecord(MediaRecorder.AudioSource.VOICE_RECOGNITION,
-                audioSampleRate, AudioFormat.CHANNEL_IN_MONO, //mono buffer can be processed linearly,
-                //safer option
-                AudioFormat.ENCODING_PCM_16BIT, bufferSize)
-        isRecording = false
+        try {
+            bufferSize = AudioRecord.getMinBufferSize(audioSampleRate,
+                    AudioFormat.CHANNEL_IN_DEFAULT, AudioFormat.ENCODING_PCM_16BIT)
+            //making the buffer bigger.... [*4] will record 4 seconds of data
+            //bufferSize = bufferSize*4;
+            recorder = AudioRecord(MediaRecorder.AudioSource.VOICE_RECOGNITION,
+                    audioSampleRate, AudioFormat.CHANNEL_IN_MONO, //mono buffer can be processed linearly,
+                    //safer option
+                    AudioFormat.ENCODING_PCM_16BIT, bufferSize)
+            isRecording = false
+        }catch (e: Exception)
+        {
+            Log.v(TAG, "Failed to create AudioRecord instance", e)
+        }
     }
 
     fun start() {

@@ -11,8 +11,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
+
     private val SoundObject = SoundRecorderProcessor()
     private var textToDisplay = ""
+    private val TAG = "MainActivity"
     //private var
 
     override fun onCreate(savedInstanceState: Bundle?) {
