@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 //import android.widget.Button
 import android.media.MediaRecorder
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -12,8 +13,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 
-    private val SoundObject = SoundRecorderProcessor()
-    private var textToDisplay = ""
+    private var SoundObject : SoundRecorderProcessor? = null
+    //private var textToDisplay = ""
     private val TAG = "MainActivity"
     //private var
 
@@ -25,28 +26,31 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mainButton.setOnClickListener(this)
         mainButton.text = getText(R.string.buttonOFF)
 
-        // Example of a call to a native method
-        //sample_text.text = stringFromJNI()
+        SoundObject = SoundRecorderProcessor()
 
     }
 
     override fun onClick(v: View?) {
         if(v?.id == mainButton.id)
         {
-            if(!SoundObject.isRecording())
-            {
-                SoundObject.start()
-                mainButton.text = getText(R.string.buttonON)
+            if(SoundObject != null) {
+                if (!SoundObject!!.isRecording()) {
+                    SoundObject!!.start()
+                    mainButton.text = getText(R.string.buttonON)
 
-                while(SoundObject.isRecording())
-                {
-                    var currentAmplitude = SoundObject.getAmplitude()
-                    pitchText.text = currentAmplitude[0].toString()
+                    while (SoundObject!!.isRecording()) {
+                        var currentAmplitude = SoundObject!!.getAmplitude()
+                        pitchText.text = currentAmplitude[0].toString()
+                    }
+                } else {
+                    SoundObject!!.stop()
+                    mainButton.text = getText(R.string.buttonOFF)
                 }
             }
-            else {
-                SoundObject.stop()
-                mainButton.text = getText(R.string.buttonOFF)
+            else
+            {
+                Toast.makeText(this, "Did not get SoundObject",
+                        Toast.LENGTH_LONG).show()
             }
         }
     }
