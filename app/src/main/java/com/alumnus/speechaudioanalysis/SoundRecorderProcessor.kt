@@ -48,7 +48,7 @@ class SoundRecorderProcessor {
             isRecording = true
         }catch (e: Exception)
         {
-            //TODO: log this!
+            Log.v(TAG,"Couldn't start recording Audio stream: " + recorder?.state, e)
         }
 
         if(recorder !=  null) {
