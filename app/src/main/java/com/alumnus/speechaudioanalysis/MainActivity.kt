@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
-//import android.widget.Button
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -17,15 +16,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 
     private var SoundObject : SoundRecorderProcessor? = null
-    //private var textToDisplay = ""
     private val TAG = "MainActivity"
-    //private val REQUEST_AUDIO = 0
-    //private val REQUEST_AUDIO_MODIFY = 1
     private val requiredAudioPermissions = 1
     private val audioPermissions = arrayOf(Manifest.permission.RECORD_AUDIO,
             Manifest.permission.MODIFY_AUDIO_SETTINGS)
     private var hasRequiredAudioPermissions = false
-    //private var audioModificationPermissionPresent = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

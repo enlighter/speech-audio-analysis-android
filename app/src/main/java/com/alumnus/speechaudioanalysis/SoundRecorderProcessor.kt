@@ -4,7 +4,6 @@ package com.alumnus.speechaudioanalysis
  * Created by sushovan on 27/10/17.
  */
 
-import android.app.PendingIntent.getActivity
 import android.content.Context
 import android.media.AudioRecord
 import android.media.MediaRecorder
@@ -13,10 +12,6 @@ import android.media.audiofx.NoiseSuppressor
 import android.media.audiofx.AcousticEchoCanceler
 import android.media.audiofx.AutomaticGainControl
 import android.util.Log
-import android.widget.Button
-import com.alumnus.speechaudioanalysis.R.id.mainButton
-
-import kotlinx.android.synthetic.main.activity_main.*
 
 class SoundRecorderProcessor {
     val audioSampleRate: Int = 44100 //44.1kHz
