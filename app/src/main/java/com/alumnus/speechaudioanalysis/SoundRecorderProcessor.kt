@@ -21,17 +21,11 @@ class SoundRecorderProcessor {
     private val TAG = "SoundRecorderProcessor"
 
     init {
-        try {
-            bufferSize = AudioRecord.getMinBufferSize(audioSampleRate,
-                    AudioFormat.CHANNEL_IN_DEFAULT, AudioFormat.ENCODING_PCM_16BIT)
-            //making the buffer bigger.... [*4] will record 4 seconds of data
-            //bufferSize = bufferSize*4;
-
-            isRecording = false
-        }catch (e: Exception)
-        {
-            Log.v(TAG, "Failed to create AudioRecord instance", e)
-        }
+        bufferSize = AudioRecord.getMinBufferSize(audioSampleRate,
+                AudioFormat.CHANNEL_IN_DEFAULT, AudioFormat.ENCODING_PCM_16BIT)
+        //making the buffer bigger.... [*4] will record 4 seconds of data
+        //bufferSize = bufferSize*4;
+        isRecording = false
     }
 
     fun start() : Boolean {
