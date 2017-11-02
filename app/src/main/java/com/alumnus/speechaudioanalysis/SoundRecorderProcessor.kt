@@ -31,10 +31,7 @@ class SoundRecorderProcessor {
                     AudioFormat.CHANNEL_IN_DEFAULT, AudioFormat.ENCODING_PCM_16BIT)
             //making the buffer bigger.... [*4] will record 4 seconds of data
             //bufferSize = bufferSize*4;
-            recorder = AudioRecord(MediaRecorder.AudioSource.VOICE_RECOGNITION,
-                    audioSampleRate, AudioFormat.CHANNEL_IN_MONO, //mono buffer can be processed linearly,
-                    //safer option
-                    AudioFormat.ENCODING_PCM_16BIT, bufferSize)
+
             isRecording = false
         }catch (e: Exception)
         {
@@ -42,26 +39,45 @@ class SoundRecorderProcessor {
         }
     }
 
-    fun start() {
+    fun start() : Boolean {
+
+        try {
+            //safe parameters
+            recorder = AudioRecord(MediaRecorder.AudioSource.VOICE_RECOGNITION,
+                    audioSampleRate, AudioFormat.CHANNEL_IN_MONO,
+                    AudioFormat.ENCODING_PCM_16BIT, bufferSize)
+        }catch (e: Exception)
+        {
+            Log.e(TAG, "Couldn't create audioRecord instance", e)
+            return false
+        }
+
         try {
             recorder?.startRecording()
             isRecording = true
         }catch (e: Exception)
         {
-            Log.v(TAG,"Couldn't start recording Audio stream: " + recorder?.state, e)
+            Log.e(TAG,"Couldn't start recording Audio stream: " + recorder?.state, e)
+            return false
         }
 
-        if(recorder !=  null) {
+        if(recorder !=  null && recorder?.state == AudioRecord.STATE_INITIALIZED) {
             //explicitly state that the below parameters are safe to be not null using !!
             NoiseSuppressor.create(recorder?.getAudioSessionId()!!)
             AcousticEchoCanceler.create(recorder?.getAudioSessionId()!!)
             AutomaticGainControl.create(recorder?.getAudioSessionId()!!)
         }
 
+        return true
     }
 
     fun stop() {
         recorder?.stop()
+        //release on app exit
+        //TODO: check if there's a function for app exit and
+        //then release in a later version of the code
+        recorder?.release()
+        recorder = null
         isRecording = false
     }
 

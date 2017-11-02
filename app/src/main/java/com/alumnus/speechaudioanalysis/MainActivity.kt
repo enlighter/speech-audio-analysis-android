@@ -86,6 +86,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
+    fun hasPermissions() : Boolean {
+        
+    }
+
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
@@ -104,7 +108,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         if(v?.id == mainButton.id)
         {
-            //TODO: refactor this to create new soundobject on click
+            if(SoundObject == null)
+                SoundObject = SoundRecorderProcessor()
+
             if(SoundObject != null) {
                 if (!SoundObject!!.isRecording()) {
                     if(!SoundObject!!.start())
@@ -112,10 +118,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                                 Toast.LENGTH_LONG).show()
                     mainButton.text = getText(R.string.buttonON)
 
-                    while (SoundObject!!.isRecording()) {
+                    //while (SoundObject!!.isRecording()) {
                         var currentAmplitude = SoundObject!!.getAmplitude()
-                        pitchText.text = currentAmplitude[0].toString()
-                    }
+                        amplitudeText.text = currentAmplitude[0].toString()
+                    //}
                 } else {
                     SoundObject!!.stop()
                     mainButton.text = getText(R.string.buttonOFF)
