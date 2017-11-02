@@ -40,6 +40,7 @@ class SoundRecorderProcessor {
     private lateinit var tdspAudioStream: TarsosDSPAudioInputStream
     private lateinit var tdspDispatcher: AudioDispatcher
     private lateinit var tdspPitchProcessor: AudioProcessor
+    private lateinit var pitchThread: Thread
 
     init {
         bufferSize = AudioRecord.getMinBufferSize(audioSampleRate,
@@ -73,6 +74,7 @@ class SoundRecorderProcessor {
             tdspDispatcher = AudioDispatcher(tdspAudioStream,bufferSize,0)
             tdspPitchProcessor = PitchProcessor(PitchEstimationAlgorithm.YIN,
                     audioSampleRate.toFloat(), bufferSize, pitchHandler)
+            tdspDispatcher.addAudioProcessor(tdspPitchProcessor)
         }catch (e: Exception)
         {
             Log.e(TAG,"Couldn't start recording Audio stream: " + recorder?.state, e)
@@ -90,6 +92,7 @@ class SoundRecorderProcessor {
     }
 
     fun stop() {
+        pitchThread.interrupt()
         recorder?.stop()
         //release on app exit
         //TODO: check if there's a function for app exit and
@@ -126,6 +129,8 @@ class SoundRecorderProcessor {
     }
 
     fun getPitch(): Float{
+        pitchThread = Thread(tdspDispatcher, "Pitch Thread")
+        pitchThread.start()
         return this.pitch
     }
 
