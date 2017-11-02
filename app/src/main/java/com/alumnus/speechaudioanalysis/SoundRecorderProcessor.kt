@@ -31,9 +31,13 @@ class SoundRecorderProcessor {
     private val TAG = "SoundRecorderProcessor"
     private var pitch : Float = 0.0f
 
+    //TardosDSP related pitch handling variables
     private val pitchHandler = PitchDetectionHandler {
         pitchDetectionResult, audioEvent -> this.pitch = pitchDetectionResult.pitch
     }
+    private lateinit var tdspFormat: TarsosDSPAudioFormat
+    private lateinit var tdspAudioStream: TarsosDSPAudioInputStream
+    private lateinit var tdspDispatcher: AudioDispatcher
 
     init {
         bufferSize = AudioRecord.getMinBufferSize(audioSampleRate,
@@ -57,19 +61,14 @@ class SoundRecorderProcessor {
         }
 
         try {
-            val tdspFormat = TarsosDSPAudioFormat(audioSampleRate.toFloat(),
+            tdspFormat = TarsosDSPAudioFormat(audioSampleRate.toFloat(),
                     16, 1, true, false)
-            val tdspAudioStream : TarsosDSPAudioInputStream =
+            tdspAudioStream =
                     AndroidAudioInputStream(recorder, tdspFormat)
-            val tdspDispatcher = AudioDispatcher(tdspAudioStream,bufferSize,0)
-        }catch (e: Exception)
-        {
-            Log.e(TAG, "Couldn't get TardosDSP pitch processor running", e)
-        }
 
-        try {
             recorder?.startRecording()
             isRecording = true
+            tdspDispatcher = AudioDispatcher(tdspAudioStream,bufferSize,0)
         }catch (e: Exception)
         {
             Log.e(TAG,"Couldn't start recording Audio stream: " + recorder?.state, e)
@@ -78,9 +77,9 @@ class SoundRecorderProcessor {
 
         if(recorder !=  null && recorder?.state == AudioRecord.STATE_INITIALIZED) {
             //explicitly state that the below parameters are safe to be not null using !!
-            NoiseSuppressor.create(recorder?.getAudioSessionId()!!)
-            AcousticEchoCanceler.create(recorder?.getAudioSessionId()!!)
-            AutomaticGainControl.create(recorder?.getAudioSessionId()!!)
+            NoiseSuppressor.create(recorder?.audioSessionId!!)
+            AcousticEchoCanceler.create(recorder?.audioSessionId!!)
+            AutomaticGainControl.create(recorder?.audioSessionId!!)
         }
 
         return true
