@@ -13,12 +13,27 @@ import android.media.audiofx.AcousticEchoCanceler
 import android.media.audiofx.AutomaticGainControl
 import android.util.Log
 
+import be.tarsos.dsp.AudioDispatcher
+import be.tarsos.dsp.AudioEvent
+import be.tarsos.dsp.pitch.PitchDetectionHandler
+import be.tarsos.dsp.io.TarsosDSPAudioFormat
+import be.tarsos.dsp.io.TarsosDSPAudioInputStream
+import be.tarsos.dsp.io.android.AndroidAudioInputStream
+import be.tarsos.dsp.pitch.PitchDetectionResult
+import be.tarsos.dsp.pitch.PitchProcessor
+import be.tarsos.dsp.pitch.PitchProcessor.PitchEstimationAlgorithm
+
 class SoundRecorderProcessor {
     val audioSampleRate: Int = 44100 //44.1kHz
     private var recorder : AudioRecord? = null
     private var bufferSize:Int = 0
     private var isRecording: Boolean = false
     private val TAG = "SoundRecorderProcessor"
+    private var pitch : Float = 0.0f
+
+    private val pitchHandler = PitchDetectionHandler {
+        pitchDetectionResult, audioEvent -> this.pitch = pitchDetectionResult.pitch
+    }
 
     init {
         bufferSize = AudioRecord.getMinBufferSize(audioSampleRate,
@@ -39,6 +54,17 @@ class SoundRecorderProcessor {
         {
             Log.e(TAG, "Couldn't create audioRecord instance", e)
             return false
+        }
+
+        try {
+            val tdspFormat = TarsosDSPAudioFormat(audioSampleRate.toFloat(),
+                    16, 1, true, false)
+            val tdspAudioStream : TarsosDSPAudioInputStream =
+                    AndroidAudioInputStream(recorder, tdspFormat)
+            val tdspDispatcher = AudioDispatcher(tdspAudioStream,bufferSize,0)
+        }catch (e: Exception)
+        {
+            Log.e(TAG, "Couldn't get TardosDSP pitch processor running", e)
         }
 
         try {
