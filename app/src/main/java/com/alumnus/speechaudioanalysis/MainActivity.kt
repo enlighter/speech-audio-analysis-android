@@ -92,6 +92,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     //while (SoundObject!!.isRecording()) {
                         var currentAmplitude = SoundObject!!.getAmplitude()
                         amplitudeText.text = currentAmplitude[0].toString()
+                        var currentPitch = SoundObject!!.getPitch()
+                        pitchText.text = currentPitch.toString()
                     //}
                 } else {
                     SoundObject!!.stop()

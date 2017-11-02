@@ -15,6 +15,7 @@ import android.util.Log
 
 import be.tarsos.dsp.AudioDispatcher
 import be.tarsos.dsp.AudioEvent
+import be.tarsos.dsp.AudioProcessor
 import be.tarsos.dsp.pitch.PitchDetectionHandler
 import be.tarsos.dsp.io.TarsosDSPAudioFormat
 import be.tarsos.dsp.io.TarsosDSPAudioInputStream
@@ -38,6 +39,7 @@ class SoundRecorderProcessor {
     private lateinit var tdspFormat: TarsosDSPAudioFormat
     private lateinit var tdspAudioStream: TarsosDSPAudioInputStream
     private lateinit var tdspDispatcher: AudioDispatcher
+    private lateinit var tdspPitchProcessor: AudioProcessor
 
     init {
         bufferSize = AudioRecord.getMinBufferSize(audioSampleRate,
@@ -69,6 +71,8 @@ class SoundRecorderProcessor {
             recorder?.startRecording()
             isRecording = true
             tdspDispatcher = AudioDispatcher(tdspAudioStream,bufferSize,0)
+            tdspPitchProcessor = PitchProcessor(PitchEstimationAlgorithm.YIN,
+                    audioSampleRate.toFloat(), bufferSize, pitchHandler)
         }catch (e: Exception)
         {
             Log.e(TAG,"Couldn't start recording Audio stream: " + recorder?.state, e)
@@ -119,6 +123,10 @@ class SoundRecorderProcessor {
 
         return shortArrayOf(amplitudeRMS, amplitudeDB)
 
+    }
+
+    fun getPitch(): Float{
+        return this.pitch
     }
 
     private fun calculateRMS(data: ShortArray) : Short
