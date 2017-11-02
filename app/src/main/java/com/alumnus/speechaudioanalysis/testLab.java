@@ -6,7 +6,7 @@ package com.alumnus.speechaudioanalysis;
 
 import be.tarsos.dsp.pitch.PitchDetectionHandler;
 import be.tarsos.dsp.AudioEvent;
-import be.tarsos.dsp.pitch.PitchDetectionResult
+import be.tarsos.dsp.pitch.PitchDetectionResult;
 
 public class testLab {
 
