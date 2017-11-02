@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private var SoundObject : SoundRecorderProcessor? = null
     private val TAG = "MainActivity"
-    private val requiredAudioPermissions = 1
+    private val requestIdRequiredAudioPermissions = 1
     private val audioPermissions = arrayOf(Manifest.permission.RECORD_AUDIO,
             Manifest.permission.MODIFY_AUDIO_SETTINGS)
     private var hasRequiredAudioPermissions = false
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             //Then request permission
             ActivityCompat.requestPermissions(this, audioPermissions,
-                    requiredAudioPermissions)
+                    requestIdRequiredAudioPermissions)
         }
 
     }
