@@ -17,11 +17,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private var SoundObject : SoundRecorderProcessor? = null
     private val TAG = "MainActivity"
+    private val IDLE = 0
+    private val RUNNING = 1
     private val requestIdRequiredAudioPermissions = 1
     private val audioPermissions = arrayOf(Manifest.permission.RECORD_AUDIO,
             Manifest.permission.MODIFY_AUDIO_SETTINGS)
     private var hasRequiredAudioPermissions = false
     private lateinit var audioProcessThread: Thread
+    private var currentState = IDLE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,7 +81,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             {
                 Toast.makeText(this, "Without required audio permissions, " +
                         "this app cannot function", Toast.LENGTH_LONG).show()
+                this.currentState = IDLE
+                return
             }
+
+            this.currentState = RUNNING
 
             if(SoundObject == null)
                 SoundObject = SoundRecorderProcessor()
@@ -101,26 +108,30 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     this.audioProcessThread.start()
 
                 } else {
+                    this.currentState = IDLE
                     SoundObject!!.stop()
                     mainButton.text = getText(R.string.buttonOFF)
+                    resetDisplayValues()
                 }
             }
             else
             {
                 Toast.makeText(this, "Did not get SoundObject",
                         Toast.LENGTH_LONG).show()
+                this.currentState = IDLE
             }
         }
     }
 
     private fun runOnAudioProcessThread()
     {
-        while (SoundObject!!.isRecording())
+        while (SoundObject!!.isRecording() && this.currentState == RUNNING)
         {
             var currentAmplitude = SoundObject!!.getAmplitude()
             var currentPitch = SoundObject!!.getPitch()
 
             runOnUiThread { displayAcquiredValues(currentPitch, currentAmplitude) }
+
         }
     }
 
@@ -133,4 +144,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         pitchText.text = pitchInHz.toString()
         amplitudeText.text = amplitude[0].toString()
     }
+
+    private fun resetDisplayValues()
+    {
+        displayAcquiredValues(0f, shortArrayOf(0,0))
+    }
+
 }
