@@ -32,7 +32,7 @@ class SoundRecorderProcessor {
     private val TAG = "SoundRecorderProcessor"
     private var pitch : Float = 0.0f
 
-    //TardosDSP related pitch handling variables
+    //TarsosDSP related pitch handling variables
     private val pitchHandler = PitchDetectionHandler {
         pitchDetectionResult, audioEvent -> this.pitch = pitchDetectionResult.pitch
     }
