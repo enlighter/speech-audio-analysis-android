@@ -81,7 +81,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        val pitchProcessor = PitchProcessor(PitchEstimationAlgorithm.FFT_YIN,
+        val pitchProcessor = PitchProcessor(PitchEstimationAlgorithm.YIN,
                 22050f, 1024, pdh)
         dispatcher.addAudioProcessor(pitchProcessor)
 
