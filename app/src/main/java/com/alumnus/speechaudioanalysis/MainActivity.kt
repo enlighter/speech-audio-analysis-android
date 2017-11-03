@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private val audioPermissions = arrayOf(Manifest.permission.RECORD_AUDIO,
             Manifest.permission.MODIFY_AUDIO_SETTINGS)
     private var hasRequiredAudioPermissions = false
+    private lateinit var audioProcessThread: Thread
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,11 +91,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     mainButton.text = getText(R.string.buttonON)
 
                     //while (SoundObject!!.isRecording()) {
-                        var currentAmplitude = SoundObject!!.getAmplitude()
-                        amplitudeText.text = currentAmplitude[0].toString()
-                        var currentPitch = SoundObject!!.getPitch()
-                        pitchText.text = currentPitch.toString()
+//                        var currentAmplitude = SoundObject!!.getAmplitude()
+//                        amplitudeText.text = currentAmplitude[0].toString()
+//                        var currentPitch = SoundObject!!.getPitch()
+//                        pitchText.text = currentPitch.toString()
                     //}
+
+                    this.audioProcessThread = Thread { runOnAudioProcessThread() }
+                    this.audioProcessThread.start()
+
                 } else {
                     SoundObject!!.stop()
                     mainButton.text = getText(R.string.buttonOFF)
@@ -108,4 +113,24 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    private fun runOnAudioProcessThread()
+    {
+        while (SoundObject!!.isRecording())
+        {
+            var currentAmplitude = SoundObject!!.getAmplitude()
+            var currentPitch = SoundObject!!.getPitch()
+
+            runOnUiThread { displayAcquiredValues(currentPitch, currentAmplitude) }
+        }
+    }
+
+    private fun displayAcquiredValues(pitchInHz: Float, amplitude: ShortArray)
+    /**
+     * assumes SoundObject is not null,
+     * so handle this accordingly
+     */
+    {
+        pitchText.text = pitchInHz.toString()
+        amplitudeText.text = amplitude[0].toString()
+    }
 }
