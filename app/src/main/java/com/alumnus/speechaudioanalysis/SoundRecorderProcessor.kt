@@ -4,7 +4,6 @@ package com.alumnus.speechaudioanalysis
  * Created by sushovan on 27/10/17.
  */
 
-import android.content.Context
 import android.media.AudioRecord
 import android.media.MediaRecorder
 import android.media.AudioFormat
@@ -14,13 +13,11 @@ import android.media.audiofx.AutomaticGainControl
 import android.util.Log
 
 import be.tarsos.dsp.AudioDispatcher
-import be.tarsos.dsp.AudioEvent
 import be.tarsos.dsp.AudioProcessor
 import be.tarsos.dsp.pitch.PitchDetectionHandler
 import be.tarsos.dsp.io.TarsosDSPAudioFormat
 import be.tarsos.dsp.io.TarsosDSPAudioInputStream
 import be.tarsos.dsp.io.android.AndroidAudioInputStream
-import be.tarsos.dsp.pitch.PitchDetectionResult
 import be.tarsos.dsp.pitch.PitchProcessor
 import be.tarsos.dsp.pitch.PitchProcessor.PitchEstimationAlgorithm
 
@@ -40,7 +37,7 @@ class SoundRecorderProcessor {
     private lateinit var tdspAudioStream: TarsosDSPAudioInputStream
     private lateinit var tdspDispatcher: AudioDispatcher
     private lateinit var tdspPitchProcessor: AudioProcessor
-    private lateinit var pitchThread: Thread
+    private var audioDispatcherThread: Thread? = null
 
     init {
         bufferSize = AudioRecord.getMinBufferSize(audioSampleRate,
@@ -92,7 +89,7 @@ class SoundRecorderProcessor {
     }
 
     fun stop() {
-        pitchThread.interrupt()
+        //audioDispatcherThread.interrupt()
         recorder?.stop()
         //release on app exit
         //TODO: check if there's a function for app exit and
@@ -129,8 +126,10 @@ class SoundRecorderProcessor {
     }
 
     fun getPitch(): Float{
-        pitchThread = Thread(tdspDispatcher, "Pitch Thread")
-        pitchThread.start()
+        if (audioDispatcherThread == null) {
+            audioDispatcherThread = Thread(tdspDispatcher, "Pitch Thread")
+            audioDispatcherThread?.start()
+        }
         return this.pitch
     }
 

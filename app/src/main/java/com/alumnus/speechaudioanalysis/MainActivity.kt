@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private val audioPermissions = arrayOf(Manifest.permission.RECORD_AUDIO,
             Manifest.permission.MODIFY_AUDIO_SETTINGS)
     private var hasRequiredAudioPermissions = false
-    private lateinit var audioProcessThread: Thread
+    private var audioProcessThread: Thread? = null
     private var currentState = IDLE
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -104,8 +104,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 //                        pitchText.text = currentPitch.toString()
                     //}
 
-                    this.audioProcessThread = Thread { runOnAudioProcessThread() }
-                    this.audioProcessThread.start()
+                    if (this.audioProcessThread == null) {
+                        this.audioProcessThread = Thread { runOnAudioProcessThread() }
+                        this.audioProcessThread?.start()
+                    }
 
                 } else {
                     this.currentState = IDLE
