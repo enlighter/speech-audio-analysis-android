@@ -5,7 +5,9 @@ import android.support.v4.app.ActivityCompat
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
+import android.nfc.Tag
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
@@ -130,7 +132,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         while (SoundObject!!.isRecording() && this.currentState == RUNNING)
         {
             var currentAmplitude = SoundObject!!.getAmplitude()
+            Log.d(TAG, "Current amplitude: " + currentAmplitude.toString())
             var currentPitch = SoundObject!!.getPitch()
+            Log.d(TAG,"Current pitch: " + currentPitch.toString())
 
             runOnUiThread { displayAcquiredValues(currentPitch, currentAmplitude) }
 

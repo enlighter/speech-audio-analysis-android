@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
+import android.util.Log
 
 import be.tarsos.dsp.AudioEvent
 import be.tarsos.dsp.pitch.PitchDetectionHandler
@@ -76,6 +77,8 @@ class MainActivity : AppCompatActivity() {
         var pdh = object : PitchDetectionHandler {
             override fun handlePitch(p0: PitchDetectionResult?, p1: AudioEvent?) {
                 val pitchInHz = p0?.getPitch()
+
+                Log.d(TAG,"Current value: "+ pitchInHz.toString())
 
                 runOnUiThread { processPitch(pitchInHz!!) }
             }

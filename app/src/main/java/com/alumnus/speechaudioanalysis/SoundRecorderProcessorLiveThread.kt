@@ -8,6 +8,8 @@ import android.media.AudioRecord
 import android.media.MediaRecorder
 import android.media.AudioFormat
 
+//TODO: This file is not in use currently
+
 class SoundRecorderProcessorLiveThread: Thread(){
     private var stopped: Boolean
 
