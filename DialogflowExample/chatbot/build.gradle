@@ -30,6 +30,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
     implementation project(':base')
+
+    //add the google gson library
+    compile 'com.google.code.gson:gson:2.8.2'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
