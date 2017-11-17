@@ -5,7 +5,6 @@ import android.support.v4.app.ActivityCompat
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
-import android.nfc.Tag
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -18,7 +17,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
 
     private var SoundObject : SoundRecorderProcessor? = null
-    private val TAG = "MainActivity"
+    private val TAG = MainActivity::class.java.name
     private val IDLE = 0
     private val RUNNING = 1
     private val requestIdRequiredAudioPermissions = 1

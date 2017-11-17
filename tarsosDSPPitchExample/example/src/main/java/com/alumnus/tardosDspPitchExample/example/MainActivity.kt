@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val TAG = "MainActivity"
+    private val TAG = MainActivity::class.java.name
     private var hasRequiredAudioPermissions = false
     private val audioPermissions = arrayOf(Manifest.permission.RECORD_AUDIO)
     private val requestIdRequiredAudioPermissions = 1
