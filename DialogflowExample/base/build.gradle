@@ -29,6 +29,7 @@ dependencies {
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'ai.api:sdk:2.0.7@aar'
+    compile 'ai.api:libai:1.6.12'
     //compile project(':ailib')
 
     application project(':app')
