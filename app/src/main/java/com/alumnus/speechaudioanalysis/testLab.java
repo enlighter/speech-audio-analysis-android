@@ -10,6 +10,8 @@ import be.tarsos.dsp.pitch.PitchDetectionResult;
 
 public class testLab {
 
+    private static final String TAG = testLab.class.getName();
+
     PitchDetectionHandler handler = new PitchDetectionHandler() {
         @Override
         public void handlePitch(PitchDetectionResult pitchDetectionResult,
