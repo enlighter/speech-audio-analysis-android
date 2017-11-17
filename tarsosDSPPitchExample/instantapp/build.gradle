@@ -4,3 +4,12 @@ dependencies {
     implementation project(':example')
     implementation project(':base')
 }
+
+android {
+    compileSdkVersion 27
+    buildToolsVersion '27.0.1'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}

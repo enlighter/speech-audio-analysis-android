@@ -2,9 +2,6 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-
-
-
     defaultConfig {
         applicationId "com.alumnus.tarsosDspPitchExample"
         minSdkVersion 23
@@ -14,14 +11,17 @@ android {
 
 
     }
-
     buildTypes {
-       release {
-           minifyEnabled false
-           proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-       }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
     }
-
+    buildToolsVersion '27.0.1'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
