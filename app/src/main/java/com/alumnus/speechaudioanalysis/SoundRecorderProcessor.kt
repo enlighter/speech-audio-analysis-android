@@ -26,7 +26,7 @@ class SoundRecorderProcessor {
     private var recorder : AudioRecord? = null
     private var bufferSize:Int = 0
     private var isRecording: Boolean = false
-    private val TAG = "SoundRecorderProcessor"
+    private val TAG = SoundRecorderProcessor::class.java.name
     private var pitch : Float = 0.0f
 
     //TarsosDSP related pitch handling variables
