@@ -12,7 +12,9 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 
-class BaseActivity : AppCompatActivity() {
+//By default the kotlin activity is final, so we cannot able to extend the class.
+// To overcome that we have to make the activity as open so it becomes extendable.
+open class BaseActivity : AppCompatActivity() {
 
     private lateinit var app: AIApplication
 
