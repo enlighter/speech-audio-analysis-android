@@ -41,7 +41,7 @@ class AIButtonSampleActivity : BaseActivity(), AIButton.AIButtonListener {
         //resultTextView = findViewById<View>(R.id.resultTextView)
         aiButton = micButton
 
-        val config = AIConfiguration(AIServiceSampleActivity.CLIENT_ACCESS_TOKEN,
+        val config = AIConfiguration(Config.ACCESS_TOKEN,
                 ai.api.AIConfiguration.SupportedLanguages.EnglishGB,
                 AIConfiguration.RecognitionEngine.System)
 

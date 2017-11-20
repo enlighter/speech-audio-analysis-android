@@ -62,7 +62,7 @@ class AIServiceSampleActivity : BaseActivity(), AIListener {
 
     private fun initService() {
         //final AIConfiguration.SupportedLanguages lang = AIConfiguration.SupportedLanguages.fromLanguageTag(selectedLanguage.getLanguageCode());
-        val config = AIConfiguration(CLIENT_ACCESS_TOKEN,
+        val config = AIConfiguration(Config.ACCESS_TOKEN,
                 ai.api.AIConfiguration.SupportedLanguages.EnglishGB,
                 AIConfiguration.RecognitionEngine.System)
 
@@ -206,7 +206,5 @@ class AIServiceSampleActivity : BaseActivity(), AIListener {
     companion object {
 
         val TAG = AIServiceSampleActivity::class.java.name
-        //TODO: enter the client access token of dialogflow agent
-        val CLIENT_ACCESS_TOKEN = ""
     }
 }

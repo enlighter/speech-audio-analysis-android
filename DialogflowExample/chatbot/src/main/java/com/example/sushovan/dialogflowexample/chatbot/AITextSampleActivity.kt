@@ -82,7 +82,7 @@ class AITextSampleActivity : BaseActivity(), AdapterView.OnItemSelectedListener,
 
     private fun initService() {
         val lang = ai.api.AIConfiguration.SupportedLanguages.EnglishGB
-        val config = AIConfiguration(AIServiceSampleActivity.CLIENT_ACCESS_TOKEN,
+        val config = AIConfiguration(Config.ACCESS_TOKEN,
                 lang,
                 AIConfiguration.RecognitionEngine.System)
 
