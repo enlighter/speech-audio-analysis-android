@@ -72,9 +72,9 @@ class MainActivity : BaseActivity() {
         startActivity(AIButtonSampleActivity::class.java)
     }
 
-    /*fun dialogSampleClick(view: View) {
+    fun dialogSampleClick(view: View) {
         startActivity(AIDialogSampleActivity::class.java)
-    }*/
+    }
 
     /*fun textSampleClick(view: View) {
         startActivity(AITextSampleActivity::class.java)
