@@ -63,7 +63,7 @@ class AIServiceSampleActivity : BaseActivity(), AIListener {
     private fun initService() {
         //final AIConfiguration.SupportedLanguages lang = AIConfiguration.SupportedLanguages.fromLanguageTag(selectedLanguage.getLanguageCode());
         val config = AIConfiguration(CLIENT_ACCESS_TOKEN,
-                AIConfiguration.SupportedLanguages.EnglishGB,
+                ai.api.AIConfiguration.SupportedLanguages.EnglishGB,
                 AIConfiguration.RecognitionEngine.System)
 
         if (aiService != null) {
