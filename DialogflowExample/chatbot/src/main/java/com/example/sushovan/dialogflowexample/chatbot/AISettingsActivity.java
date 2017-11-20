@@ -44,7 +44,8 @@ public class AISettingsActivity extends BaseActivity implements
 
         settingsManager = ((AIApplication) getApplication()).getSettingsManager();
 
-        ViewGroup bluetoothSection = (ViewGroup) findViewById(R.id.activity_settings_bluetooth_section);
+        ViewGroup bluetoothSection = (ViewGroup) findViewById(
+                R.id.activity_settings_bluetooth_section);
         bluetoothSection.setOnClickListener(this);
 
         bluetoothSwitch = (CheckBox) findViewById(R.id.activity_settings_bluetooth_swith);
@@ -54,19 +55,15 @@ public class AISettingsActivity extends BaseActivity implements
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.activity_settings_bluetooth_section:
-                bluetoothSwitch.performClick();
-                break;
+        if (v.getId() == R.id.activity_settings_bluetooth_section) {
+            bluetoothSwitch.performClick();
         }
     }
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        switch (buttonView.getId()) {
-            case R.id.activity_settings_bluetooth_swith:
-                settingsManager.setUseBluetooth(isChecked);
-                break;
+        if (buttonView.getId() == R.id.activity_settings_bluetooth_swith) {
+            settingsManager.setUseBluetooth(isChecked);
         }
     }
 }
