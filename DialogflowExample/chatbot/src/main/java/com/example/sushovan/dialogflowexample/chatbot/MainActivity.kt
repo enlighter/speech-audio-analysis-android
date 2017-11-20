@@ -76,9 +76,9 @@ class MainActivity : BaseActivity() {
         startActivity(AIDialogSampleActivity::class.java)
     }
 
-    /*fun textSampleClick(view: View) {
+    fun textSampleClick(view: View) {
         startActivity(AITextSampleActivity::class.java)
-    }*/
+    }
 
     private fun startActivity(cls: Class<*>) {
         val intent = Intent(this, cls)
