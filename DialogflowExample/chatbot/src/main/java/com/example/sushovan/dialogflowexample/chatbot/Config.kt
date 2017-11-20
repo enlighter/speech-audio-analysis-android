@@ -6,8 +6,8 @@ package com.example.sushovan.dialogflowexample.chatbot
 
 object Config {
     // copy this keys from your developer dashboard
-    //TODO:
-    val ACCESS_TOKEN = "3485a96fb27744db83e78b8c4bc9e7b7"
+    val ACCESS_TOKEN = "5453503e56bd4585b365b841ce0fb523"
+            //"3485a96fb27744db83e78b8c4bc9e7b7"
 
     /*val languages = arrayOf<LanguageConfig>(
             LanguageConfig("en", "a11ea1d839e3446d84e402cb97cdadfb"),
