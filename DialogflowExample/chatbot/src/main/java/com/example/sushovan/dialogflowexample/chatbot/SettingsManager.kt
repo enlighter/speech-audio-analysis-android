@@ -19,12 +19,12 @@ class SettingsManager(private val context: Context) {
         set(useBluetooth) {
             this.useBluetooth = useBluetooth
 
-            prefs.edit().putBoolean(PREF_USE_BLUETOOTH, useBluetooth).commit()
+            prefs.edit().putBoolean(PREF_USE_BLUETOOTH, useBluetooth).apply()
             val controller = (context.applicationContext as AIApplication).getBluetoothController()
             if (useBluetooth) {
-                controller!!.start()
+                controller.start()
             } else {
-                controller!!.stop()
+                controller.stop()
             }
         }
 
