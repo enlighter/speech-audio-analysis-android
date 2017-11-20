@@ -40,7 +40,7 @@ import ai.api.model.Result;
 import ai.api.model.Status;
 
 public class AIServiceSampleActivity extends BaseActivity
-        implements AIListener, AdapterView.OnItemSelectedListener {
+        implements AIListener {
 
     public static final String TAG = AIServiceSampleActivity.class.getName();
     //TODO: enter the client access token of dialogflow agent
@@ -243,7 +243,7 @@ public class AIServiceSampleActivity extends BaseActivity
         });
     }
 
-    @Override
+    /*@Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         final LanguageConfig selectedLanguage = (LanguageConfig) parent.getItemAtPosition(position);
         initService(selectedLanguage);
@@ -252,7 +252,7 @@ public class AIServiceSampleActivity extends BaseActivity
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
-    }
+    }*/
 
     private void startActivity(Class<?> cls) {
         final Intent intent = new Intent(this, cls);
