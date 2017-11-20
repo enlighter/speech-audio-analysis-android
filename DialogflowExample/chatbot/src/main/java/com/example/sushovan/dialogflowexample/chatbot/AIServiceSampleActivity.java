@@ -16,7 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
+//import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -64,10 +64,10 @@ public class AIServiceSampleActivity extends BaseActivity
         resultTextView = (TextView) findViewById(R.id.resultTextView);
         contextEditText = (EditText) findViewById(R.id.contextEditText);
 
-        Spinner spinner = (Spinner) findViewById(R.id.selectLanguageSpinner);
+        //Spinner spinner = (Spinner) findViewById(R.id.selectLanguageSpinner);
         //final ArrayAdapter<LanguageConfig> languagesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Config.languages);
-        spinner.setAdapter(languagesAdapter);
-        spinner.setOnItemSelectedListener(this);
+        //spinner.setAdapter(languagesAdapter);
+        //spinner.setOnItemSelectedListener(this);
     }
 
     private void initService() {
