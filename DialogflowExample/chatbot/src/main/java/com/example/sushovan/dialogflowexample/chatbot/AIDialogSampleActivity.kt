@@ -41,7 +41,7 @@ class AIDialogSampleActivity : BaseActivity(), AIDialog.AIDialogListener {
 
         //resultTextView = findViewById<View>(R.id.resultTextView) as TextView
 
-        val config = AIConfiguration(AIServiceSampleActivity.CLIENT_ACCESS_TOKEN,
+        val config = AIConfiguration(Config.ACCESS_TOKEN,
                 ai.api.AIConfiguration.SupportedLanguages.English,
                 AIConfiguration.RecognitionEngine.System)
 
