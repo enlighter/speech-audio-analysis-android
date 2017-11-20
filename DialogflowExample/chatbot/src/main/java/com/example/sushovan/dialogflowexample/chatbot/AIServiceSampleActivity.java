@@ -65,7 +65,7 @@ public class AIServiceSampleActivity extends BaseActivity
         contextEditText = (EditText) findViewById(R.id.contextEditText);
 
         Spinner spinner = (Spinner) findViewById(R.id.selectLanguageSpinner);
-        final ArrayAdapter<LanguageConfig> languagesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Config.languages);
+        //final ArrayAdapter<LanguageConfig> languagesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, Config.languages);
         spinner.setAdapter(languagesAdapter);
         spinner.setOnItemSelectedListener(this);
     }
