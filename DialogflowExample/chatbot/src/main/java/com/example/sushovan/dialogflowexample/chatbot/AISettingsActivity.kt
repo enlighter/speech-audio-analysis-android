@@ -34,7 +34,8 @@ import android.widget.CompoundButton
  * specific language governing permissions and limitations under the License.
  */
 
-class AISettingsActivity : BaseActivity(), View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+class AISettingsActivity : BaseActivity(), View.OnClickListener,
+        CompoundButton.OnCheckedChangeListener {
 
     private lateinit var bluetoothSwitch: CheckBox
 
