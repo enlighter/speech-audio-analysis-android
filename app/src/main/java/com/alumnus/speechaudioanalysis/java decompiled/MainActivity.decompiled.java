@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.alumnus.speechaudioanalysis.R.id;
+import com.alumnus.speechaudioanalysis.SoundRecorderProcessor.amplitudeResult;
 import java.util.HashMap;
 import kotlin.Metadata;
 import kotlin.jvm.internal.Intrinsics;
@@ -21,19 +22,19 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 @Metadata(
-   mv = {1, 1, 7},
-   bv = {1, 0, 2},
-   k = 1,
-   d1 = {"\u0000p\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\b\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000e\n\u0000\n\u0002\u0010\u0011\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u000b\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0000\n\u0002\u0010\u0007\n\u0000\n\u0002\u0010\u0017\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0010\u0015\n\u0002\b\u0004\u0018\u00002\u00020\u00012\u00020\u0002B\u0005¢\u0006\u0002\u0010\u0003J\u0018\u0010\u0014\u001a\u00020\u00152\u0006\u0010\u0016\u001a\u00020\u00172\u0006\u0010\u0018\u001a\u00020\u0019H\u0002J#\u0010\u001a\u001a\u00020\u00122\u0006\u0010\u001b\u001a\u00020\u001c2\u000e\u0010\u001d\u001a\n\u0012\u0006\b\u0001\u0012\u00020\n0\f¢\u0006\u0002\u0010\u001eJ\u0012\u0010\u001f\u001a\u00020\u00152\b\u0010 \u001a\u0004\u0018\u00010!H\u0016J\u0012\u0010\"\u001a\u00020\u00152\b\u0010#\u001a\u0004\u0018\u00010$H\u0014J-\u0010%\u001a\u00020\u00152\u0006\u0010&\u001a\u00020\u00052\u000e\u0010\u001d\u001a\n\u0012\u0006\b\u0001\u0012\u00020\n0\f2\u0006\u0010'\u001a\u00020(H\u0016¢\u0006\u0002\u0010)J\b\u0010*\u001a\u00020\u0015H\u0002J\b\u0010+\u001a\u00020\u0015H\u0002R\u000e\u0010\u0004\u001a\u00020\u0005X\u0082D¢\u0006\u0002\n\u0000R\u000e\u0010\u0006\u001a\u00020\u0005X\u0082D¢\u0006\u0002\n\u0000R\u0010\u0010\u0007\u001a\u0004\u0018\u00010\bX\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\t\u001a\u00020\nX\u0082D¢\u0006\u0002\n\u0000R\u0016\u0010\u000b\u001a\b\u0012\u0004\u0012\u00020\n0\fX\u0082\u0004¢\u0006\u0004\n\u0002\u0010\rR\u0010\u0010\u000e\u001a\u0004\u0018\u00010\u000fX\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u0010\u001a\u00020\u0005X\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u0011\u001a\u00020\u0012X\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u0013\u001a\u00020\u0005X\u0082D¢\u0006\u0002\n\u0000¨\u0006,"},
-   d2 = {"Lcom/alumnus/speechaudioanalysis/MainActivity;", "Landroid/support/v7/app/AppCompatActivity;", "Landroid/view/View$OnClickListener;", "()V", "IDLE", "", "RUNNING", "SoundObject", "Lcom/alumnus/speechaudioanalysis/SoundRecorderProcessor;", "TAG", "", "audioPermissions", "", "[Ljava/lang/String;", "audioProcessThread", "Ljava/lang/Thread;", "currentState", "hasRequiredAudioPermissions", "", "requestIdRequiredAudioPermissions", "displayAcquiredValues", "", "pitchInHz", "", "amplitude", "", "hasPermissions", "context", "Landroid/content/Context;", "permissions", "(Landroid/content/Context;[Ljava/lang/String;)Z", "onClick", "v", "Landroid/view/View;", "onCreate", "savedInstanceState", "Landroid/os/Bundle;", "onRequestPermissionsResult", "requestCode", "grantResults", "", "(I[Ljava/lang/String;[I)V", "resetDisplayValues", "runOnAudioProcessThread", "production sources for module app"}
+        mv = {1, 1, 8},
+        bv = {1, 0, 2},
+        k = 1,
+        d1 = {"\u0000r\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\b\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u000e\n\u0002\b\u0002\n\u0002\u0010\u0011\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0010\u000b\n\u0002\b\u0002\n\u0002\u0010\u0002\n\u0000\n\u0002\u0010\u0007\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0004\n\u0002\u0018\u0002\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0010\u0015\n\u0002\b\u0004\u0018\u00002\u00020\u00012\u00020\u0002B\u0005¢\u0006\u0002\u0010\u0003J\u0018\u0010\u0015\u001a\u00020\u00162\u0006\u0010\u0017\u001a\u00020\u00182\u0006\u0010\u0019\u001a\u00020\u001aH\u0002J#\u0010\u001b\u001a\u00020\u00132\u0006\u0010\u001c\u001a\u00020\u001d2\u000e\u0010\u001e\u001a\n\u0012\u0006\b\u0001\u0012\u00020\n0\r¢\u0006\u0002\u0010\u001fJ\u0012\u0010 \u001a\u00020\u00162\b\u0010!\u001a\u0004\u0018\u00010\"H\u0016J\u0012\u0010#\u001a\u00020\u00162\b\u0010$\u001a\u0004\u0018\u00010%H\u0014J-\u0010&\u001a\u00020\u00162\u0006\u0010'\u001a\u00020\u00052\u000e\u0010\u001e\u001a\n\u0012\u0006\b\u0001\u0012\u00020\n0\r2\u0006\u0010(\u001a\u00020)H\u0016¢\u0006\u0002\u0010*J\b\u0010+\u001a\u00020\u0016H\u0002J\b\u0010,\u001a\u00020\u0016H\u0002R\u000e\u0010\u0004\u001a\u00020\u0005X\u0082D¢\u0006\u0002\n\u0000R\u000e\u0010\u0006\u001a\u00020\u0005X\u0082D¢\u0006\u0002\n\u0000R\u0010\u0010\u0007\u001a\u0004\u0018\u00010\bX\u0082\u000e¢\u0006\u0002\n\u0000R\u0016\u0010\t\u001a\n \u000b*\u0004\u0018\u00010\n0\nX\u0082\u0004¢\u0006\u0002\n\u0000R\u0016\u0010\f\u001a\b\u0012\u0004\u0012\u00020\n0\rX\u0082\u0004¢\u0006\u0004\n\u0002\u0010\u000eR\u0010\u0010\u000f\u001a\u0004\u0018\u00010\u0010X\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u0011\u001a\u00020\u0005X\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u0012\u001a\u00020\u0013X\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u0014\u001a\u00020\u0005X\u0082D¢\u0006\u0002\n\u0000¨\u0006-"},
+        d2 = {"Lcom/alumnus/speechaudioanalysis/MainActivity;", "Landroid/support/v7/app/AppCompatActivity;", "Landroid/view/View$OnClickListener;", "()V", "IDLE", "", "RUNNING", "SoundObject", "Lcom/alumnus/speechaudioanalysis/SoundRecorderProcessor;", "TAG", "", "kotlin.jvm.PlatformType", "audioPermissions", "", "[Ljava/lang/String;", "audioProcessThread", "Ljava/lang/Thread;", "currentState", "hasRequiredAudioPermissions", "", "requestIdRequiredAudioPermissions", "displayAcquiredValues", "", "pitchInHz", "", "amplitude", "Lcom/alumnus/speechaudioanalysis/SoundRecorderProcessor$amplitudeResult;", "hasPermissions", "context", "Landroid/content/Context;", "permissions", "(Landroid/content/Context;[Ljava/lang/String;)Z", "onClick", "v", "Landroid/view/View;", "onCreate", "savedInstanceState", "Landroid/os/Bundle;", "onRequestPermissionsResult", "requestCode", "grantResults", "", "(I[Ljava/lang/String;[I)V", "resetDisplayValues", "runOnAudioProcessThread", "production sources for module app"}
 )
 public final class MainActivity extends AppCompatActivity implements OnClickListener {
    private SoundRecorderProcessor SoundObject;
-   private final String TAG = "MainActivity";
+   private final String TAG = MainActivity.class.getName();
    private final int IDLE;
    private final int RUNNING = 1;
    private final int requestIdRequiredAudioPermissions = 1;
-   private final String[] audioPermissions;
+   private final String[] audioPermissions = new String[]{"android.permission.RECORD_AUDIO", "android.permission.MODIFY_AUDIO_SETTINGS"};
    private boolean hasRequiredAudioPermissions;
    private Thread audioProcessThread;
    private int currentState;
@@ -71,9 +72,9 @@ public final class MainActivity extends AppCompatActivity implements OnClickList
       Intrinsics.checkParameterIsNotNull(grantResults, "grantResults");
       super.onRequestPermissionsResult(requestCode, permissions, grantResults);
       switch(requestCode) {
-      case 1:
-         this.hasRequiredAudioPermissions = true;
-      default:
+         case 1:
+            this.hasRequiredAudioPermissions = true;
+         default:
       }
    }
 
@@ -157,7 +158,7 @@ public final class MainActivity extends AppCompatActivity implements OnClickList
          }
 
          currentAmplitude.element = var10001.getAmplitude();
-         Log.d(this.TAG, "Current amplitude: " + ((short[])currentAmplitude.element).toString());
+         Log.d(this.TAG, "Current amplitude: " + ((amplitudeResult)currentAmplitude.element).toString());
          final FloatRef currentPitch = new FloatRef();
          var10001 = this.SoundObject;
          if(this.SoundObject == null) {
@@ -168,24 +169,24 @@ public final class MainActivity extends AppCompatActivity implements OnClickList
          Log.d(this.TAG, "Current pitch: " + String.valueOf(currentPitch.element));
          this.runOnUiThread((Runnable)(new Runnable() {
             public final void run() {
-               MainActivity.this.displayAcquiredValues(currentPitch.element, (short[])currentAmplitude.element);
+               MainActivity.this.displayAcquiredValues(currentPitch.element, (amplitudeResult)currentAmplitude.element);
             }
          }));
       }
    }
 
-   private final void displayAcquiredValues(float pitchInHz, short[] amplitude) {
+   private final void displayAcquiredValues(float pitchInHz, amplitudeResult amplitude) {
       ((TextView)this._$_findCachedViewById(id.pitchText)).setText((CharSequence)String.valueOf(pitchInHz));
-      ((TextView)this._$_findCachedViewById(id.amplitudeText)).setText((CharSequence)String.valueOf(amplitude[0]));
+      short ampRMS = amplitude.component1();
+      double DBrms = amplitude.component2();
+      ((TextView)this._$_findCachedViewById(id.amplitudeText)).setText((CharSequence)String.valueOf(ampRMS));
    }
 
    private final void resetDisplayValues() {
-      this.displayAcquiredValues(0.0F, new short[]{0, 0});
+      this.displayAcquiredValues(0.0F, new amplitudeResult(0, 0.0D));
    }
 
    public MainActivity() {
-      Object[] elements$iv = (Object[])(new String[]{"android.permission.RECORD_AUDIO", "android.permission.MODIFY_AUDIO_SETTINGS"});
-      this.audioPermissions = (String[])elements$iv;
       this.currentState = this.IDLE;
    }
 

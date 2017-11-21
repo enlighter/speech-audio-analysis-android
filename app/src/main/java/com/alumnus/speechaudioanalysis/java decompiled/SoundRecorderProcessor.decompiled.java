@@ -20,18 +20,18 @@ import kotlin.jvm.internal.Intrinsics;
 import org.jetbrains.annotations.NotNull;
 
 @Metadata(
-   mv = {1, 1, 7},
-   bv = {1, 0, 2},
-   k = 1,
-   d1 = {"\u0000d\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\u000e\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\b\n\u0002\b\u0004\n\u0002\u0010\u000b\n\u0000\n\u0002\u0010\u0007\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\n\n\u0000\n\u0002\u0010\u0017\n\u0002\b\u0004\n\u0002\u0010\u0002\n\u0000\u0018\u00002\u00020\u0001B\u0005¢\u0006\u0002\u0010\u0002J\u0010\u0010\u001c\u001a\u00020\u001d2\u0006\u0010\u001e\u001a\u00020\u001fH\u0002J\u0006\u0010 \u001a\u00020\u001fJ\u0006\u0010!\u001a\u00020\u000fJ\u0006\u0010\f\u001a\u00020\rJ\u0006\u0010\"\u001a\u00020\rJ\u0006\u0010#\u001a\u00020$R\u000e\u0010\u0003\u001a\u00020\u0004X\u0082D¢\u0006\u0002\n\u0000R\u0010\u0010\u0005\u001a\u0004\u0018\u00010\u0006X\u0082\u000e¢\u0006\u0002\n\u0000R\u0014\u0010\u0007\u001a\u00020\bX\u0086D¢\u0006\b\n\u0000\u001a\u0004\b\t\u0010\nR\u000e\u0010\u000b\u001a\u00020\bX\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\f\u001a\u00020\rX\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u000e\u001a\u00020\u000fX\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u0010\u001a\u00020\u0011X\u0082\u0004¢\u0006\u0002\n\u0000R\u0010\u0010\u0012\u001a\u0004\u0018\u00010\u0013X\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u0014\u001a\u00020\u0015X\u0082.¢\u0006\u0002\n\u0000R\u000e\u0010\u0016\u001a\u00020\u0017X\u0082.¢\u0006\u0002\n\u0000R\u000e\u0010\u0018\u001a\u00020\u0019X\u0082.¢\u0006\u0002\n\u0000R\u000e\u0010\u001a\u001a\u00020\u001bX\u0082.¢\u0006\u0002\n\u0000¨\u0006%"},
-   d2 = {"Lcom/alumnus/speechaudioanalysis/SoundRecorderProcessor;", "", "()V", "TAG", "", "audioDispatcherThread", "Ljava/lang/Thread;", "audioSampleRate", "", "getAudioSampleRate", "()I", "bufferSize", "isRecording", "", "pitch", "", "pitchHandler", "Lbe/tarsos/dsp/pitch/PitchDetectionHandler;", "recorder", "Landroid/media/AudioRecord;", "tdspAudioStream", "Lbe/tarsos/dsp/io/TarsosDSPAudioInputStream;", "tdspDispatcher", "Lbe/tarsos/dsp/AudioDispatcher;", "tdspFormat", "Lbe/tarsos/dsp/io/TarsosDSPAudioFormat;", "tdspPitchProcessor", "Lbe/tarsos/dsp/AudioProcessor;", "calculateRMS", "", "data", "", "getAmplitude", "getPitch", "start", "stop", "", "production sources for module app"}
+        mv = {1, 1, 8},
+        bv = {1, 0, 2},
+        k = 1,
+        d1 = {"\u0000t\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0002\b\u0002\n\u0002\u0010\u000e\n\u0002\b\u0002\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\b\n\u0002\b\u0004\n\u0002\u0010\u000b\n\u0000\n\u0002\u0010\u0007\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0018\u0002\n\u0000\n\u0002\u0010\u0006\n\u0000\n\u0002\u0010\u0017\n\u0000\n\u0002\u0010\n\n\u0000\n\u0002\u0018\u0002\n\u0002\b\u0003\n\u0002\u0010\u0002\n\u0002\b\u0002\u0018\u00002\u00020\u0001:\u0001)B\u0005¢\u0006\u0002\u0010\u0002J\u0010\u0010\u001d\u001a\u00020\u001e2\u0006\u0010\u001f\u001a\u00020 H\u0002J\u0010\u0010!\u001a\u00020\"2\u0006\u0010\u001f\u001a\u00020 H\u0002J\u0006\u0010#\u001a\u00020$J\u0006\u0010%\u001a\u00020\u0010J\u0006\u0010\r\u001a\u00020\u000eJ\u0006\u0010&\u001a\u00020\u000eJ\u0006\u0010'\u001a\u00020(R\u0016\u0010\u0003\u001a\n \u0005*\u0004\u0018\u00010\u00040\u0004X\u0082\u0004¢\u0006\u0002\n\u0000R\u0010\u0010\u0006\u001a\u0004\u0018\u00010\u0007X\u0082\u000e¢\u0006\u0002\n\u0000R\u0014\u0010\b\u001a\u00020\tX\u0086D¢\u0006\b\n\u0000\u001a\u0004\b\n\u0010\u000bR\u000e\u0010\f\u001a\u00020\tX\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\r\u001a\u00020\u000eX\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u000f\u001a\u00020\u0010X\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u0011\u001a\u00020\u0012X\u0082\u0004¢\u0006\u0002\n\u0000R\u0010\u0010\u0013\u001a\u0004\u0018\u00010\u0014X\u0082\u000e¢\u0006\u0002\n\u0000R\u000e\u0010\u0015\u001a\u00020\u0016X\u0082.¢\u0006\u0002\n\u0000R\u000e\u0010\u0017\u001a\u00020\u0018X\u0082.¢\u0006\u0002\n\u0000R\u000e\u0010\u0019\u001a\u00020\u001aX\u0082.¢\u0006\u0002\n\u0000R\u000e\u0010\u001b\u001a\u00020\u001cX\u0082.¢\u0006\u0002\n\u0000¨\u0006*"},
+        d2 = {"Lcom/alumnus/speechaudioanalysis/SoundRecorderProcessor;", "", "()V", "TAG", "", "kotlin.jvm.PlatformType", "audioDispatcherThread", "Ljava/lang/Thread;", "audioSampleRate", "", "getAudioSampleRate", "()I", "bufferSize", "isRecording", "", "pitch", "", "pitchHandler", "Lbe/tarsos/dsp/pitch/PitchDetectionHandler;", "recorder", "Landroid/media/AudioRecord;", "tdspAudioStream", "Lbe/tarsos/dsp/io/TarsosDSPAudioInputStream;", "tdspDispatcher", "Lbe/tarsos/dsp/AudioDispatcher;", "tdspFormat", "Lbe/tarsos/dsp/io/TarsosDSPAudioFormat;", "tdspPitchProcessor", "Lbe/tarsos/dsp/AudioProcessor;", "calculateDBrms", "", "data", "", "calculateRMS", "", "getAmplitude", "Lcom/alumnus/speechaudioanalysis/SoundRecorderProcessor$amplitudeResult;", "getPitch", "start", "stop", "", "amplitudeResult", "production sources for module app"}
 )
 public final class SoundRecorderProcessor {
    private final int audioSampleRate = '걄';
    private AudioRecord recorder;
    private int bufferSize;
    private boolean isRecording;
-   private final String TAG = "SoundRecorderProcessor";
+   private final String TAG = SoundRecorderProcessor.class.getName();
    private float pitch;
    private final PitchDetectionHandler pitchHandler = (PitchDetectionHandler)(new PitchDetectionHandler() {
       public final void handlePitch(PitchDetectionResult pitchDetectionResult, AudioEvent audioEvent) {
@@ -148,9 +148,9 @@ public final class SoundRecorderProcessor {
    }
 
    @NotNull
-   public final short[] getAmplitude() {
+   public final SoundRecorderProcessor.amplitudeResult getAmplitude() {
       if(!this.isRecording) {
-         return new short[]{0, 0};
+         return new SoundRecorderProcessor.amplitudeResult(0, 0.0D);
       } else {
          int size$iv = this.bufferSize;
          short[] result$iv = new short[size$iv];
@@ -168,8 +168,8 @@ public final class SoundRecorderProcessor {
          }
 
          short amplitudeRMS = this.calculateRMS(result$iv);
-         short amplitudeDB = 0;
-         return new short[]{amplitudeRMS, amplitudeDB};
+         double amplitudeDB = this.calculateDBrms(result$iv);
+         return new SoundRecorderProcessor.amplitudeResult(amplitudeRMS, amplitudeDB);
       }
    }
 
@@ -204,6 +204,19 @@ public final class SoundRecorderProcessor {
       return (short)((int)Math.sqrt(meanSquare));
    }
 
+   private final double calculateDBrms(short[] data) {
+      double sum = 0.0D;
+
+      for(int var5 = 0; var5 < data.length; ++var5) {
+         short num = data[var5];
+         double y = (double)num / 32768.0D;
+         sum += y * y;
+      }
+
+      double rms = Math.sqrt(sum / (double)data.length);
+      return 20.0D * Math.log10(rms);
+   }
+
    public SoundRecorderProcessor() {
       this.bufferSize = AudioRecord.getMinBufferSize(this.audioSampleRate, 1, 2);
       this.isRecording = false;
@@ -212,5 +225,83 @@ public final class SoundRecorderProcessor {
    // $FF: synthetic method
    public static final float access$getPitch$p(SoundRecorderProcessor $this) {
       return $this.pitch;
+   }
+
+   @Metadata(
+           mv = {1, 1, 8},
+           bv = {1, 0, 2},
+           k = 1,
+           d1 = {"\u0000,\n\u0002\u0018\u0002\n\u0002\u0010\u0000\n\u0000\n\u0002\u0010\n\n\u0000\n\u0002\u0010\u0006\n\u0002\b\t\n\u0002\u0010\u000b\n\u0002\b\u0002\n\u0002\u0010\b\n\u0000\n\u0002\u0010\u000e\n\u0000\b\u0086\b\u0018\u00002\u00020\u0001B\u0015\u0012\u0006\u0010\u0002\u001a\u00020\u0003\u0012\u0006\u0010\u0004\u001a\u00020\u0005¢\u0006\u0002\u0010\u0006J\t\u0010\u000b\u001a\u00020\u0003HÆ\u0003J\t\u0010\f\u001a\u00020\u0005HÆ\u0003J\u001d\u0010\r\u001a\u00020\u00002\b\b\u0002\u0010\u0002\u001a\u00020\u00032\b\b\u0002\u0010\u0004\u001a\u00020\u0005HÆ\u0001J\u0013\u0010\u000e\u001a\u00020\u000f2\b\u0010\u0010\u001a\u0004\u0018\u00010\u0001HÖ\u0003J\t\u0010\u0011\u001a\u00020\u0012HÖ\u0001J\t\u0010\u0013\u001a\u00020\u0014HÖ\u0001R\u0011\u0010\u0004\u001a\u00020\u0005¢\u0006\b\n\u0000\u001a\u0004\b\u0007\u0010\bR\u0011\u0010\u0002\u001a\u00020\u0003¢\u0006\b\n\u0000\u001a\u0004\b\t\u0010\n¨\u0006\u0015"},
+           d2 = {"Lcom/alumnus/speechaudioanalysis/SoundRecorderProcessor$amplitudeResult;", "", "ampRMS", "", "DBrms", "", "(SD)V", "getDBrms", "()D", "getAmpRMS", "()S", "component1", "component2", "copy", "equals", "", "other", "hashCode", "", "toString", "", "production sources for module app"}
+   )
+   public static final class amplitudeResult {
+      private final short ampRMS;
+      private final double DBrms;
+
+      public final short getAmpRMS() {
+         return this.ampRMS;
+      }
+
+      public final double getDBrms() {
+         return this.DBrms;
+      }
+
+      public amplitudeResult(short ampRMS, double DBrms) {
+         this.ampRMS = ampRMS;
+         this.DBrms = DBrms;
+      }
+
+      public final short component1() {
+         return this.ampRMS;
+      }
+
+      public final double component2() {
+         return this.DBrms;
+      }
+
+      @NotNull
+      public final SoundRecorderProcessor.amplitudeResult copy(short ampRMS, double DBrms) {
+         return new SoundRecorderProcessor.amplitudeResult(ampRMS, DBrms);
+      }
+
+      // $FF: synthetic method
+      // $FF: bridge method
+      @NotNull
+      public static SoundRecorderProcessor.amplitudeResult copy$default(SoundRecorderProcessor.amplitudeResult var0, short var1, double var2, int var4, Object var5) {
+         if((var4 & 1) != 0) {
+            var1 = var0.ampRMS;
+         }
+
+         if((var4 & 2) != 0) {
+            var2 = var0.DBrms;
+         }
+
+         return var0.copy(var1, var2);
+      }
+
+      public String toString() {
+         return "amplitudeResult(ampRMS=" + this.ampRMS + ", DBrms=" + this.DBrms + ")";
+      }
+
+      public int hashCode() {
+         int var10000 = this.ampRMS * 31;
+         long var10001 = Double.doubleToLongBits(this.DBrms);
+         return var10000 + (int)(var10001 ^ var10001 >>> 32);
+      }
+
+      public boolean equals(Object var1) {
+         if(this != var1) {
+            if(var1 instanceof SoundRecorderProcessor.amplitudeResult) {
+               SoundRecorderProcessor.amplitudeResult var2 = (SoundRecorderProcessor.amplitudeResult)var1;
+               if(this.ampRMS == var2.ampRMS && Double.compare(this.DBrms, var2.DBrms) == 0) {
+                  return true;
+               }
+            }
+
+            return false;
+         } else {
+            return true;
+         }
+      }
    }
 }
