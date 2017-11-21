@@ -103,14 +103,16 @@ class SoundRecorderProcessor {
         return this.isRecording
     }
 
-    fun getAmplitude() : ShortArray {
+    data class amplitudeResult(val ampRMS: Short, val DBrms: Double)
+
+    fun getAmplitude() : amplitudeResult {
         /**
          * This function assumes you have started recording,
          * doesn't start recording by itself
          */
 
         if(!isRecording)
-            return shortArrayOf(0,0)
+            return amplitudeResult(0,0.0)
 
         //shorten the buffer read size for faster sample collection
         var data =  ShortArray(this.bufferSize, {i->0})
@@ -119,9 +121,9 @@ class SoundRecorderProcessor {
         //stop()
         var amplitudeRMS = calculateRMS(data)
 
-        var amplitudeDB : Short = 0
+        var amplitudeDB = calculateDBrms(data)
 
-        return shortArrayOf(amplitudeRMS, amplitudeDB)
+        return amplitudeResult(amplitudeRMS, amplitudeDB)
 
     }
 
@@ -143,6 +145,19 @@ class SoundRecorderProcessor {
         val meanSquare: Double = sumOfSquares/data.size
 
         return (Math.sqrt(meanSquare)).toShort()
+    }
+
+    private fun calculateDBrms(data: ShortArray) : Double
+    {
+        var sum: Double = 0.0
+        for(num in data)
+        {
+            var y: Double = num / 32768.0
+            sum += y*y
+        }
+        var rms: Double = Math.sqrt(sum / data.size)
+
+        return (20.0 *Math.log10(rms))
     }
 
 //    private fun displayAmplitude()

@@ -140,19 +140,22 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun displayAcquiredValues(pitchInHz: Float, amplitude: ShortArray)
+    private fun displayAcquiredValues(pitchInHz: Float,
+                                      amplitude: SoundRecorderProcessor.amplitudeResult)
     /**
      * assumes SoundObject is not null,
      * so handle this accordingly
      */
     {
         pitchText.text = pitchInHz.toString()
-        amplitudeText.text = amplitude[0].toString()
+        val (ampRMS, DBrms) = amplitude
+        amplitudeText.text = ampRMS.toString()
     }
 
     private fun resetDisplayValues()
     {
-        displayAcquiredValues(0f, shortArrayOf(0,0))
+        displayAcquiredValues(0f,
+                SoundRecorderProcessor.amplitudeResult(0,0.0))
     }
 
 }
