@@ -23,7 +23,7 @@ android {
 }
 
 dependencies {
-    api 'com.android.support:appcompat-v7:27.0.0'
+    api 'com.android.support:appcompat-v7:27.0.1'
     api 'com.android.support.constraint:constraint-layout:1.0.2'
     application project(':app')
     feature project(':example')
