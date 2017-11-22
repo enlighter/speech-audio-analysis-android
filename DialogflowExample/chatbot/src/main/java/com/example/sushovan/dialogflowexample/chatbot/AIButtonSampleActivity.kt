@@ -57,7 +57,8 @@ class AIButtonSampleActivity : BaseActivity(), AIButton.AIButtonListener {
         super.onPause()
 
         // use this method to disconnect from speech recognition service
-        // Not destroying the SpeechRecognition object in onPause method would block other apps from using SpeechRecognition service
+        // Not destroying the SpeechRecognition object in onPause method
+        // would block other apps from using SpeechRecognition service
         aiButton.pause()
     }
 
