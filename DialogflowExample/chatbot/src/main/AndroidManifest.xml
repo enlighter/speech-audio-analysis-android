@@ -24,23 +24,6 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="com.example.sushovan.dialogflowexample.chatbot.AIButtonSampleActivity"
-            android:label="@string/title_activity_aibutton_sample"
-            android:parentActivityName="com.example.sushovan.dialogflowexample.chatbot.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.sushovan.dialogflowexample.chatbot.MainActivity" />
-        </activity>
-
-        <activity
-            android:name=".AIServiceSampleActivity"
-            android:label="@string/title_activity_aiservice_sample"
-            android:parentActivityName="com.example.sushovan.dialogflowexample.chatbot.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.sushovan.dialogflowexample.chatbot.MainActivity" />
-        </activity>
 
         <activity
             android:name=".AIDialogSampleActivity"
@@ -66,15 +49,6 @@
             android:theme="@style/Base.Theme.AppCompat.Dialog">
 
         </activity>-->
-
-        <activity
-            android:name=".AITextSampleActivity"
-            android:label="@string/title_activity_aitext_sample"
-            android:parentActivityName="com.example.sushovan.dialogflowexample.chatbot.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.sushovan.dialogflowexample.chatbot.MainActivity" />
-        </activity>
 
         <!--<receiver android:name=".AISampleAppWidget" >
             <intent-filter>

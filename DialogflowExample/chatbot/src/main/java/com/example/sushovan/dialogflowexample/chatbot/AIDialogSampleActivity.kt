@@ -30,7 +30,6 @@ import kotlinx.android.synthetic.main.activity_aidialog_sample.*
 
 class AIDialogSampleActivity : BaseActivity(), AIDialog.AIDialogListener {
 
-    //private var resultTextView: TextView? = null
     private lateinit var aiDialog: AIDialog
 
     private val gson = GsonFactory.getGson()
@@ -38,8 +37,6 @@ class AIDialogSampleActivity : BaseActivity(), AIDialog.AIDialogListener {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_aidialog_sample)
-
-        //resultTextView = findViewById<View>(R.id.resultTextView) as TextView
 
         val config = AIConfiguration(Config.ACCESS_TOKEN,
                 ai.api.AIConfiguration.SupportedLanguages.English,

@@ -11,30 +11,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
 
-    /*private val mOnNavigationItemSelectedListener =
-            BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
-            R.id.navigation_home -> {
-                message.setText(R.string.title_home)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_dashboard -> {
-                message.setText(R.string.title_dashboard)
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_notifications -> {
-                message.setText(R.string.title_notifications)
-                return@OnNavigationItemSelectedListener true
-            }
-        }
-        false
-    }*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         TTS.init(applicationContext)
     }
 
@@ -56,28 +37,14 @@ class MainActivity : BaseActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         val id = item.getItemId()
         if (id == R.id.action_settings) {
-            //val intent = Intent(this, AISettingsActivity::class.java)
-            startActivity(AISettingsActivity::class.java)
+           startActivity(AISettingsActivity::class.java)
             return true
         }
         return super.onOptionsItemSelected(item)
     }
 
-    fun serviceSampleClick(view: View) {
-        //val intent = Intent(this, AIServiceSampleActivity::class.java)
-        startActivity(AIServiceSampleActivity::class.java)
-    }
-
-    fun buttonSampleClick(view: View) {
-        startActivity(AIButtonSampleActivity::class.java)
-    }
-
     fun dialogSampleClick(view: View) {
         startActivity(AIDialogSampleActivity::class.java)
-    }
-
-    fun textSampleClick(view: View) {
-        startActivity(AITextSampleActivity::class.java)
     }
 
     private fun startActivity(cls: Class<*>) {
