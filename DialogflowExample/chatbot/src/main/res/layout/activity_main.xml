@@ -14,14 +14,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/ai_button_chooser"
-            android:onClick="buttonSampleClick"
+            android:text="@string/dialog_sample_text"
+            android:onClick="dialogSampleClick"
             />
-
 
         </LinearLayout>
 

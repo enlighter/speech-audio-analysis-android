@@ -36,14 +36,14 @@ class MainActivity : BaseActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         val id = item.getItemId()
         if (id == R.id.action_settings) {
-            startActivity(AISettingsActivity::class.java)
+           startActivity(AISettingsActivity::class.java)
             return true
         }
         return super.onOptionsItemSelected(item)
     }
 
-    fun buttonSampleClick(view: View) {
-        startActivity(AIButtonSampleActivity::class.java)
+    fun dialogSampleClick(view: View) {
+        startActivity(AIDialogSampleActivity::class.java)
     }
 
     private fun startActivity(cls: Class<*>) {

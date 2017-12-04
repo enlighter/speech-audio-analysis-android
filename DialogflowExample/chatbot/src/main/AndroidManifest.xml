@@ -24,10 +24,18 @@
             </intent-filter>
         </activity>
 
+<<<<<<< HEAD
         <activity
             android:name="com.example.sushovan.dialogflowexample.chatbot.AIButtonSampleActivity"
             android:label="@string/title_activity_aibutton_sample"
             android:parentActivityName="com.example.sushovan.dialogflowexample.chatbot.MainActivity">
+=======
+
+        <activity
+            android:name=".AIDialogSampleActivity"
+            android:label="@string/title_activity_aidialog_sample"
+            android:parentActivityName=".MainActivity">
+>>>>>>> devi
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.sushovan.dialogflowexample.chatbot.MainActivity" />

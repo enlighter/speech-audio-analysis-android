@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 
 import com.google.gson.Gson
@@ -23,66 +24,26 @@ import ai.api.model.AIResponse
 import ai.api.model.Metadata
 import ai.api.model.Result
 import ai.api.model.Status
-import ai.api.ui.AIButton
+import ai.api.ui.AIDialog
 
-import kotlinx.android.synthetic.main.activity_aibutton_sample.*
+import kotlinx.android.synthetic.main.activity_aidialog_sample.*
 
-class AIButtonSampleActivity : BaseActivity(), AIButton.AIButtonListener {
+class AIDialogSampleActivity : BaseActivity(), AIDialog.AIDialogListener {
 
-    private lateinit var aiButton: AIButton
-    //private var resultTextView: TextView? = null
+    private lateinit var aiDialog: AIDialog
 
     private val gson = GsonFactory.getGson()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_aibutton_sample)
-
-        //resultTextView = findViewById<View>(R.id.resultTextView)
-        aiButton = micButton
+        setContentView(R.layout.activity_aidialog_sample)
 
         val config = AIConfiguration(Config.ACCESS_TOKEN,
-                ai.api.AIConfiguration.SupportedLanguages.EnglishGB,
+                ai.api.AIConfiguration.SupportedLanguages.English,
                 AIConfiguration.RecognitionEngine.System)
 
-        config.recognizerStartSound = resources.openRawResourceFd(R.raw.test_start)
-        config.recognizerStopSound = resources.openRawResourceFd(R.raw.test_stop)
-        config.recognizerCancelSound = resources.openRawResourceFd(R.raw.test_cancel)
-
-        aiButton.initialize(config)
-        aiButton.setResultsListener(this)
-    }
-
-    override fun onPause() {
-        super.onPause()
-
-        // use this method to disconnect from speech recognition service
-        // Not destroying the SpeechRecognition object in onPause method
-        // would block other apps from using SpeechRecognition service
-        aiButton.pause()
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        // use this method to reinit connection to recognition service
-        aiButton.resume()
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_aibutton_sample, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-
-
-        if (id == R.id.action_settings) {
-            startActivity(AISettingsActivity::class.java)
-            return true
-        }
-        return super.onOptionsItemSelected(item)
+        aiDialog = AIDialog(this, config)
+        aiDialog.setResultsListener(this)
     }
 
     override fun onResult(response: AIResponse) {
@@ -123,17 +84,42 @@ class AIButtonSampleActivity : BaseActivity(), AIButton.AIButtonListener {
     }
 
     override fun onError(error: AIError) {
-        runOnUiThread {
-            Log.d(TAG, "onError")
-            resultTextView.text = error.toString()
-        }
+        runOnUiThread { resultTextView.text = error.toString() }
     }
 
     override fun onCancelled() {
-        runOnUiThread {
-            Log.d(TAG, "onCancelled")
-            resultTextView.text = ""
+        runOnUiThread { resultTextView.text = "" }
+    }
+
+    override fun onPause() {
+        aiDialog.pause()
+        super.onPause()
+    }
+
+    override fun onResume() {
+        aiDialog.resume()
+        super.onResume()
+    }
+
+    fun buttonListenOnClick(view: View) {
+        aiDialog.showAndListen()
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_aibutton_sample, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+
+
+        if (id == R.id.action_settings) {
+            startActivity(AISettingsActivity::class.java)
+            return true
         }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun startActivity(cls: Class<*>) {
@@ -143,6 +129,8 @@ class AIButtonSampleActivity : BaseActivity(), AIButton.AIButtonListener {
 
     companion object {
 
-        val TAG = AIButtonSampleActivity::class.java.name
+        private val TAG = AIDialogSampleActivity::class.java.name
     }
+
+
 }
